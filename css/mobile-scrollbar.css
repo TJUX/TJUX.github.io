@@ -1,0 +1,44 @@
+@media screen and (min-width: 374px) and (max-width: 375px) {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgb(207, 207, 207);
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(119, 119, 119);
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(224, 224, 224);
+  }
+
+  body {
+    cursor: grab;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .blocker {
+    width: 0;
+    height: 100vh;
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    background-color: #00000000;
+    z-index: 999999;
+  }
+}
