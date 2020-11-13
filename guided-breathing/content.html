@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+        charset="utf-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
+    <title>My test page</title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+    <link href="styles/style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="width-calc" style="width: 100%; height: 10px; position: absolute; left:0; top: 0;"></div>
+    <div id="id-blocker" class="blocker"></div>
+    <div class="main-container">
+        <div class="colour-container" id="id-colour-container">
+            <div class="colour-row colour-row-side">
+                <div class="colour-row-inner" style="float: right;">
+                    <div class="colour-box">
+                        <div class="colour-choice" style="background-color: #FF9500;"></div>
+                    </div>
+                    <div class="colour-box">
+                        <div class="colour-choice" style="background-color:#125abc;"></div>
+                    </div>
+                    <div class="colour-box">
+                        <div class="colour-choice" style="background-color: #567750";"></div>
+                    </div>
+                    <div class="colour-box">
+                        <div class="colour-choice" style="background-color: #814f84"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="colour-row colour-row-middle">
+                <colour-button  id="id-colour-button" onclick="clickColourButton()">
+                    <img src="images/colour-icon.svg">
+                </colour-button>
+            </div>
+            <div class="colour-row colour-row-side">
+                <div class="colour-row-inner" style="float: left;">
+                    <div class="colour-box">
+                        <div class="colour-choice" style="background-color: #de6172;"></div>
+                    </div>
+                    <div class="colour-box">
+                        <div class="colour-choice" style="background-color: #444444;"></div>
+                    </div>
+                    <div class="colour-box">
+                        <div class="colour-choice" style="background-color: #566479;"></div>
+                    </div>
+                    <div class="colour-box">
+                        <div class="colour-choice" style="background-color: #9e6d3f;"></div>
+                    </div>
+                </div>
+            </div>
+            <!--<
+            <restart-button  id="id-colour-button" onclick="clickColourButton()">
+                <img style="width:80%" src="images/colour-icon.svg">
+            </restart-button>
+            -->
+            
+        </div>
+        <div class="circle-container">
+            <svg viewBox="0 0 60 55" class="circle" id="id-circle">
+                <ellipse id= "my-circle"cx="50%" cy="50%" rx="15" ry="15" fill="#ffffff"></ellipse>
+                <ellipse id="stroke-inner" cx="50%" cy="50%" rx="15" ry="15" fill="transparent" stroke="#FF9500" stroke-width="1" stroke-opacity="0"></ellipse>
+                <ellipse id="stroke-outer" cx="50%" cy="50%" rx="25" ry="25" fill="transparent" stroke="#ffffff" stroke-width="1" stroke-opacity="0.25"></ellipse>
+            </svg>
+        </div>
+        <div class="do-button can-hover" onclick="clickButton()" id="demo1" >start</div>
+        <div class="length-choices-container">
+            <div class="length-choices-margin"></div>
+            <div class="length-choices-inner">
+                <div class="length-choices-button length-choice-selected" id="option1" onclick="breathOptionSelect(this)">
+                    <div class="length-choice-text" >10 breaths</div>
+                </div>
+            </div>
+            <div class="length-choices-inner">
+                <div class="length-choices-button" id="option2" onclick="breathOptionSelect(this)">
+                    <div class="length-choice-text" >20 breaths</div>
+                </div>
+            </div>
+            <div class="length-choices-inner">
+                <div class="length-choices-button" id="option3" onclick="breathOptionSelect(this)">
+                    <div class="length-choice-text">30 breaths</div>
+                </div>
+            </div>
+            <div class="length-choices-margin"></div>
+        </div>
+        <div class="stop-button" id ="id-stop-button" onclick="clickStop()"><span style="font-size: 120%;">&#9632;</span> stop</div>
+    </div>
+
+    <!--<script src="scripts/main.js"></script>-->
+    <script>
+        let speed = 0.9;
+        let centralElement = document.getElementById("demo1");
+        let shapeWidthCalc = 15;
+        let shapeWidth = shapeWidthCalc;
+        let shapeHeight = shapeWidthCalc;
+        let shapeWidthCalcTarget = shapeWidthCalc;
+        let shapeMinWidth = 15;
+        let shapeMaxWidth = 25;
+        let breathRate = 0.1;
+        let frameRate = 10;
+        let breathInTime = (5000*speed);
+        let breathOutTime = (4500*speed);
+        let timeBetweenBreaths = breathInTime;
+        let textFadeTime = (timeBetweenBreaths*(0.8*speed));
+        let breathAcc = 0;
+        let breathAccRate = breathRate*0.1;
+        let breathInOut = "in";
+        let strokeOpacityOuter = 0;
+        let strokeOpacityInner = 0;
+        let colourCurrent = 0;
+        let colourChoice = ["#FF9500","#125abc","#567750", "#814f84", "#de6172", "#444444", "#9e6d3f"];
+        let textStage = 0;
+        let courseOption = 1;
+        let courseFinished = 0;
+        let timer;
+        let courseRepeat = false;
+        var faderTimer;
+
+        resizeCircle();
+        
+        function clickButton() {
+            if (centralElement.innerHTML === "start") {
+                f = document.getElementById("id-colour-button");
+                f.style.transitionDelay = null;
+                f.classList.add("cannot-interact");
+                a = document.getElementsByClassName("length-choices-button");
+                for (i=0; i < a.length; i++) {
+                    a[i].classList.add("cannot-interact");
+                    a[i].style.transitionDelay = null;
+                }
+                centralElement.classList.remove("can-hover");
+                document.getElementById("id-stop-button").style.bottom = "10px";
+                document.getElementById("id-stop-button").style.transitionDelay = "1s";
+                centralElement.style.opacity = "0";
+                setTimeout(timerFunction, 1000);
+                textFadeTime = (3000);
+                courseFinished = 0;
+            }
+        }
+
+
+
+        
+        function timerFunctionTextFade() {
+            if (courseFinished === 0 ) {
+                if (centralElement.style.opacity === "1") {
+                    centralElement.style.opacity = 0;
+                }
+            }
+        }
+        function timerFunction() {
+            if (courseFinished === 0) {
+                clearTimeout(faderTimer);
+                faderTimer = setTimeout(timerFunctionTextFade, textFadeTime);
+
+                switch(breathInOut) {
+                    case("out"):
+                    shapeWidthCalcTarget = shapeMaxWidth;
+                    breathInOut = "in";
+                    timeBetweenBreaths = breathInTime;
+                    textFadeTime = (breathOutTime*0.8);
+                    break; 
+                    case("in"):
+                    shapeWidthCalcTarget = shapeMinWidth;
+                    breathInOut = "out";
+                    timeBetweenBreaths = breathOutTime;
+                    textFadeTime = (breathInTime*0.8);
+                    break; 
+                }
+
+                centralElement.style.opacity = "1";
+                switch(textStage) {
+                    case(0):
+                    centralElement.innerHTML = "let's do some<br>guided breathing";
+                    textStage += 1;
+                    break;
+                    case(1):
+                    centralElement.innerHTML = "";
+                    break;
+                    case(2):
+                    a = document.getElementsByClassName("length-choice-selected");
+                    centralElement.innerHTML = "for<br>"+a[0].textContent;
+                    break;
+                    case(3):
+                    centralElement.innerHTML = "relax and <br>breath<br>along with me";
+                    break;
+                    case(4):
+                    centralElement.innerHTML = "breath in";
+                    breathInOut = "in";
+                    shapeWidthCalcTarget = shapeMaxWidth;
+                    setTimeout(shapeSizeTimer, frameRate);
+                    break; 
+                    case(5):
+                    centralElement.innerHTML = "and out";
+                    break; 
+                    case(6):
+                    centralElement.innerHTML = "in";
+                    break; 
+                    case(7):
+                    centralElement.innerHTML = "out";
+                    break; 
+                    case(8):
+                    centralElement.innerHTML = "";
+                    break; 
+                    case(14): 
+                        if (courseOption == 1) {
+                            centralElement.innerHTML = "half way<br>there";
+                        }
+                    break;
+                    case(15):
+                        centralElement.innerHTML = "";
+                    break;
+                    case(22): 
+                        if (courseOption == 1) {
+                            textStage = 62;
+                        }
+                    break;
+                    case(24): 
+                        if (courseOption == 2) {
+                            centralElement.innerHTML = "half way<br>there";
+                        }
+                    break;
+                    case(25):
+                        centralElement.innerHTML = "";
+                    break;
+                    case(34):
+                        if (courseOption == 3) {
+                            centralElement.innerHTML = "half way<br>there";
+                        }
+                    break; 
+                    case(35):
+                    centralElement.innerHTML = "";
+                    break; 
+                    case(42): 
+                        if (courseOption == 2) {
+                            textStage = 62;
+                        }
+                    break;
+                    case(63)://14
+                    breathInOut = "none";
+                    textFadeTime = (breathOutTime*0.8);
+                    break; 
+                    case(64):
+                    centralElement.innerHTML = "all done";
+                    break; 
+                    case(65):
+                    centralElement.innerHTML = "thanks for<br>doing<br>guided breathing<br>with me";
+                    break;
+                    case(66):
+                    endCourse();
+                    document.getElementById("id-stop-button").style.bottom = null;
+                    document.getElementById("id-stop-button").style.transitionDelay = null;
+                    break; 
+                }
+                breathAcc = 0;
+                if (textStage > 0) {
+                    setTimeout(timerFunction, timeBetweenBreaths);
+                    textStage += 1;
+                }
+                else {
+                    //setTimeout(timerFunction, 5000);
+                }
+            }
+        }
+        function shapeSizeTimer() {
+            if (courseFinished === 0) {
+                //shapeWidthCalc += ((shapeWidthCalcTarget-shapeWidthCalc)*breathRate);
+
+                if (shapeWidthCalcTarget > shapeWidthCalc) {
+                    if ((shapeMaxWidth - shapeWidthCalc) > 5) {//breathing in && distance to full breath > 10
+                        breathAcc += breathAccRate;
+                    }
+                    else {
+                        breathAcc -= breathAccRate;
+                    }
+                }
+
+                if (shapeWidthCalcTarget < shapeWidthCalc) {
+                    if ((shapeWidthCalc - shapeMinWidth) > 5) {//breathing out && distance to min breath > 10
+                        breathAcc += breathAccRate;
+                    }
+                    else {
+                        breathAcc -= breathAccRate;
+                    }
+                }
+
+                if (breathAcc < 0.1) {
+                    breathAcc = 0.1;
+                }
+                if (breathAcc > 1) {
+                    breathAcc = 1;
+                }
+
+                if (shapeWidthCalc < shapeWidthCalcTarget) { //breath in
+                    shapeWidthCalc += (breathRate*breathAcc);
+                    if (shapeWidthCalc >= shapeWidthCalcTarget) {
+                        shapeWidthCalc = shapeWidthCalcTarget;
+                    }
+                }
+                if (shapeWidthCalc > shapeWidthCalcTarget) { //breath out
+                    shapeWidthCalc -= (breathRate*breathAcc);
+                    if (shapeWidthCalc <= shapeWidthCalcTarget) {
+                        shapeWidthCalc = shapeWidthCalcTarget;
+                    }
+                }
+                shapeWidth += ((shapeWidthCalc-shapeWidth)*0.02);
+                document.getElementById("my-circle").setAttribute('rx', shapeWidth);
+                shapeHeight += ((shapeWidthCalc-shapeHeight)*0.01);
+                document.getElementById("my-circle").setAttribute('ry', (shapeHeight));
+
+                strokeOpacityOuter = (((shapeMaxWidth-shapeWidth)/10)/3);
+                document.getElementById("stroke-outer").setAttribute('stroke-opacity', (strokeOpacityOuter));
+
+                strokeOpacityInner = ((Math.abs(shapeMinWidth-shapeWidth)/10)/6);
+                document.getElementById("stroke-inner").setAttribute('stroke-opacity', (strokeOpacityInner));
+
+                setTimeout(shapeSizeTimer, frameRate);
+            }
+        }
+
+        window.addEventListener('click', function(e) {
+            var c = document.getElementById("id-colour-button");
+            if (c.classList.contains("colour-button-pressed") ){
+                if (!document.getElementById("id-colour-container").contains(e.target)){
+                    toggleColourButtons();
+                    c.classList.remove("colour-button-pressed");       
+            }
+        } 
+        });
+
+
+        function clickColourButton() {
+            c = document.getElementById("id-colour-button");
+            if (!c.classList.contains("cannot-interact")) {
+                toggleColourButtons();
+                c.classList.toggle("colour-button-pressed");
+            }
+        }
+
+        function toggleColourButtons() {
+            var c = document.getElementsByClassName("colour-choice");
+            for (i = 0; i < c.length; i++) {
+                c[i].classList.toggle("colour-open");
+            }
+        }
+
+        var colourButtons = document.getElementsByClassName("colour-choice");
+        for (i = 0; i < colourButtons.length; i++) {
+            colourButtons[i].addEventListener("click", function(){swapColour(this);});
+        }
+        
+        function swapColour(c) {
+            var newColour = c.style.backgroundColor;
+        
+            document.body.style.backgroundColor = newColour;
+            centralElement.style.color = newColour;
+            var a = document.getElementsByClassName("length-choice-text");
+            for (i = 0; i < a.length; i++) {
+                a[i].style.color = newColour;
+            }
+            centralElement.style.color = newColour;
+            document.getElementById("stroke-inner").setAttribute('stroke', newColour);
+        }
+
+        window.addEventListener('resize', resizeCircle);
+        function resizeCircle() {
+            a = document.getElementById("id-circle");
+            a.style.width = a.style.height;
+        }
+        function breathOptionSelect(c) {
+            if (!c.classList.contains("cannot-interact")) {
+                f = document.getElementsByClassName("length-choices-button");
+                for (i=0; i < f.length; i++) {
+                    if (f[i] != c) {
+                        f[i].classList.remove("length-choice-selected");
+                    }
+                }
+                c.classList.add("length-choice-selected");
+                switch(c.id) {
+                    case("option1") : courseOption = 1; break;
+                    case("option2") : courseOption = 2; break;
+                    case("option3") : courseOption = 3; break;
+                }
+            }
+        }
+        function endCourse() {
+            f = document.getElementById("id-colour-button");
+            f.style.top = "0px";
+            f.style.transitionDelay = "0.5s";
+            f.classList.remove("cannot-interact");
+            a = document.getElementsByClassName("length-choices-button");
+            for (i=0; i < a.length; i++) {
+                a[i].classList.remove("cannot-interact");
+                a[i].style.transitionDelay = "0.5s";
+            }
+            centralElement.classList.add("can-hover");
+
+            centralElement.innerHTML = "start";
+            textStage = 0;
+            courseFinished = 1;
+            breathInOut = "out";
+            courseRepeat = true;
+
+        }
+
+        function clickStop() {
+            textStage = 65;
+            breathInOut = "in";
+            document.getElementById("id-stop-button").style.bottom = null;
+            document.getElementById("id-stop-button").style.transitionDelay = null;
+            centralElement.style.opacity = "1";
+        }
+    </script>
+  </body>
+</html>
