@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta
+            charset="utf-8"
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1"
+        />
+        <title>My test page</title>
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+        <link href="styles/style.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/css/mobile-scrollbar.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="width-calc" style="width: 100%; height: 10px; position: absolute; left:0; top: 0;"></div>
+        <div id="id-blocker" class="blocker"></div>
+        <div id="top" class="frame">
+            <div class="frame-nav">
+                <div id="id-nav" class="nav">
+                    <img class="logo" src="images/ui/tjux-logo.png">
+                    <p>Graphic Design<br>Portfolio</p>
+                    <a class="email">
+                        <p>Email me</p>
+                    </a>
+                </div>
+            </div>
+            <div id="id-frame-content" class="frame-content">
+                <div id="grid-main" class="grid-row display-toggle display-grid"> 
+                    <div id="id-mobile-header"class="mobile-header">Graphic Design<br>Portfolio</div>
+                </div>
+                <div class="loading loading-small" id="id-loading-small"></div>
+                <div class="thanks">
+                    <div class="thanks-inner">
+                        <img src="images/ui/sal-run.gif">
+                        <div class="thanks-right-container">
+                            <p>Thanks for looking!</p>
+                            <div id="id-back-to-top" class="back-to-top"><span style="font-size: 110%">🠥</span> Back to top <span style="font-size: 110%">🠥</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="id-display-options" class="display-options">
+                    <div id="button-grid" class="display-options-button" style="background-image: url('images/ui/icon-grid-select.png')"></div>
+                    <div id="button-full-width" class="display-options-button" style="background-image: url('images/ui/icon-full-width.png')"></div>
+                </div>
+                <div id="id-loading" class="loading"></div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="scripts/layout.js"></script>
+    <script type="text/javascript" src="/scripts/emulate-mobile.js"></script>
+</html>
