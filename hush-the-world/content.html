@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Practicing my Javascript</title>
+    <meta name="Practising Javascript" content="The HTML5 Herald" />
+    <meta name="Tim Jones" content="Test" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
+
+    <link rel="stylesheet" href="css/styles.css?v=1.0" />
+    <link rel="stylesheet" href="/css/mobile-scrollbar.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div id="width-calc" style="width: 100%; height: 10px; position: absolute; left:0; top: 0;"></div>
+    <div id="id-blocker" class="blocker"></div>
+    <div class="site-container">
+      <div class="audio-player audio-player-hide" id="audio-player">
+        <div class="audio-player-play">
+          <iframe
+            id="audio-player-iframe"
+            style="border: 0; width: 100%; height: 42px; z-index: 98"
+            src="https://bandcamp.com/EmbeddedPlayer/track=3636598165/size=small/bgcol=333333/linkcol=e99708/artwork=none/transparent=true/"
+            seamless
+            ><a
+              href="https://hushtheworld.bandcamp.com/track/ocean-waves-at-dusk-white-noise-for-misophonia"
+              >Ocean Waves at Dusk - White Noise for Misophonia by Hush the
+              World</a
+            ></iframe
+          >
+        </div>
+        <div class="audio-player-title">
+          <p id="audio-title">
+            Forest Waterfall Forest Waterfall Forest Waterfall Forest Waterfall
+          </p>
+        </div>
+        <div class="audio-player-download"></div>
+      </div>
+      <div class="nav-bar">
+        <div class="nav-block-left">
+          <div class="logo-container orange-on-hover" onClick="window.location.href=window.location.href">
+            <img class="logo" src="images/hushtheworld-logo.png" />
+            <div class="logo-text">Hush the World</div>
+          </div>
+        </div>
+        <div class="nav-block-right">
+          <div class="nav-block-right-inner">
+            <div id="nav-menu-top" class="nav-menu">
+              <div class="nav-menu-bg">
+                <a class="nav-menu-contents nav-menu-item">Categories &#11208;</a>
+                <div class="nav-menu-contents nav-sub-menu">
+                  <a class="nav-menu-contents nav-menu-item">Relaxation</a>
+                  <a class="nav-menu-contents nav-menu-item">Sound anxiety relief</a>
+                  <a class="nav-menu-contents nav-menu-item">Nature</a>
+                  <a class="nav-menu-contents nav-menu-item">Sleep aid</a>
+                  <a class="nav-menu-contents nav-menu-item">All</a>
+                </div>
+                <a class="nav-menu-contents nav-menu-item">Learn about white noise &#11208;</a>
+                <div class="nav-menu-contents nav-sub-menu">
+                  <a class="nav-menu-contents nav-menu-item">What is white noise?</a>
+                  <a class="nav-menu-contents nav-menu-item">How and when to use white noise</a>
+                  <a class="nav-menu-contents nav-menu-item">Recommended earphones and speakers</a>
+                </div>
+                <a class="nav-menu-contents nav-menu-item">Learn about sound anxiety &#11208;</a>
+                <div class="nav-menu-contents nav-sub-menu">
+                  <a class="nav-menu-contents nav-menu-item">What is sound anxiety?</a>
+                  <a class="nav-menu-contents nav-menu-item">How to anxiety-proof your living space</a>  
+                </div>
+                <a class="nav-menu-contents nav-menu-item">Contact us</a>
+              </div>
+              <div style="width: 100%; height: 60px;"></div>
+            </div>
+            <div class="nav-block-menu-button" onClick="navMenuShow()">
+              <div id="nav-icon-top" class="nav-menu-icon"></div>
+            </div>
+            <div class="nav-block-search">
+              <input type="text" placeholder="Search.." />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="nav-bar-spacer"></div>
+      <div class="hero">
+        <h1>White noise for relaxation and sound anxiety relief</h1>
+        <p>Find peace and tranquility in a noisy world</p>
+      </div>
+      <div class="main-content">
+        <div class="spacer top-spacer"></div>
+        <h2>Featured white noise</h2>
+        <div class="grid-container">
+          <div class="grid-item">
+            <div class="grid-item-border">
+              <div
+                class="grid-item-top-content"
+                style="background-image: url('images/tile_forest_waterfall.jpg')"
+                id="forest_waterfall"
+                onClick="swapPlayerContent(this.id)"
+              ></div>
+              <div class="player-container">
+                <p class="track-title">Relaxing Waterfall</p>
+                <img class="icon-box fake-link-nav" src="images/download-icon-white.png" />
+              </div>
+            </div>
+          </div>
+          <div class="grid-item">
+            <div class="grid-item-border">
+              <div
+                class="grid-item-top-content"
+                style="background-image: url('images/tile_waves_dusk.jpg')"
+                id="waves_dusk"
+                onClick="swapPlayerContent(this.id)"
+              ></div>
+              <div class="player-container">
+                <p class="track-title">Ocean Waves at Dusk</p>
+                <img class="icon-box fake-link-nav" src="images/download-icon-white.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="button-see-all button-outline">Browse all white noise</button>
+
+        <hr class="full-width-hr hr-hide-mob">
+        <h2>
+          Why is Hush the World white noise effective for sound anxiety relief?
+        </h2>
+        <div class="info-block">
+          <div class="info-column info-column-1-3">
+            <div id="box1" class="collapsible-box" onClick="collapseContent(this, this.id);">
+              <div class="info-icon"> <img src="images/icon-volume.png"></div>
+              <h3>Consistent volume</h3>
+              <p class="moreinfo">More info ⯈</p>
+              <div class="collapsible-content box1 collapsed">
+              <p>Traditional ambient white noise often contains dips in volume or activity which can allow nuisance noises to be audible, in turn triggering your misophonia. Hush the World white noise is designed to maintain a consistent volume in order to ensure even coverage of outside noise.</p>
+              </div>
+            </div>
+          </div>
+          <div class="info-column info-column-1-3">
+            <div id="box2" class="collapsible-box" onClick="collapseContent(this, this.id)">
+              <div class="info-icon"> <img src="images/icon-bass.png"></div>
+              <h3>Blocks out bass</h3>
+              <p class="moreinfo">More info ⯈</p>
+              <div class="collapsible-content box2 collapsed">
+              <p>Most available white noise tracks cover mid to high-end sound frequencies and are ineffective at covering up deeper bass-heavy audio such as sound systems, TVs, vehicles or deep voices. Some Hush the World white noise tracks are designed to target these sounds specifically, and through the right headphones or speakers can block them out entirely.</p>
+              </div>
+            </div>
+          </div>
+          <div class="info-column info-column-1-3">
+            <div id="box3" class="collapsible-box" onClick="collapseContent(this, this.id)">
+              <div class="info-icon"> <img src="images/icon-quality.png"></div>
+              <h3>High quality</h3>
+              <p class="moreinfo">More info ⯈</p>
+              <div class="collapsible-content box3 collapsed">
+              <p>Hush the World white noise is created at the highest quality and doesn’t suffer from heavy compression such as that which occurs in YouTube videos and some streaming services. You can download lossless FLAC files which ensure the sound is at the maximum quality it was originally outputted at. This results in a much more comfortable and enjoyable white noise experience.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class=" spacer"></div>
+        <hr class="full-width-hr">
+        <h2>
+          Recommended for sound anxiety
+        </h2>
+        <div class="grid-container">
+          <div class="grid-item">
+            <div class="grid-item-border">
+              <div
+                class="grid-item-top-content"
+                style="background-image: url('images/tile_crisp.jpg')"
+                id="crisp_white_noise"
+                onClick="swapPlayerContent(this.id)"
+              ></div>
+              <div class="player-container">
+                <p class="track-title">Crisp White Noise</p>
+                <img class="icon-box fake-link-nav" src="images/download-icon-white.png" />
+              </div>
+            </div>
+          </div>
+          <div class="grid-item">
+            <div class="grid-item-border">
+              <div
+                class="grid-item-top-content"
+                style="background-image: url('images/tile_bass.jpg')"
+                id="bass"
+                onClick="swapPlayerContent(this.id)"
+              ></div>
+              <div class="player-container">
+                <p class="track-title">White Noise with Bass Hum</p>
+                <img class="icon-box fake-link-nav" src="images/download-icon-white.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="button-see-all button-outline">Browse all white noise</button>
+        <div class="full-width-bg background-beige">
+          <div class="info-block">
+            <div class="info-column info-column-1-2">
+              <div class="info-column-inner">
+                <h2>Stress-free your home</h2>
+                <p>Maximise the effectiveness of white noise and bring peace back to your home.</p>
+                <p>With strategic placement of speakers and the right selection of white noise, it’s possible to block out most, if not all of the noises that prevent you from enjoying your personal space.</p>
+                <div class="info-block ">
+                  <button>Learn more</button>
+                  <button class="button-outline">Download white noise</button>
+                </div>
+              </div>
+            </div>
+            <div class="info-column info-column-1-2"><img src="images/woman-relaxing.jpg"></div>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <h2>
+          Recommended for relaxation
+        </h2>
+        <div class="grid-container">
+          <div class="grid-item">
+            <div class="grid-item-border">
+              <div
+                class="grid-item-top-content"
+                style="background-image: url('images/tile_fireplace.jpg')"
+                id="roaring-fire"
+                onClick="swapPlayerContent(this.id)"
+              ></div>
+              <div class="player-container">
+                <p class="track-title">Roaring Festive Fire</p>
+                <img class="icon-box fake-link-nav" src="images/download-icon-white.png" />
+              </div>
+            </div>
+          </div>
+          <div class="grid-item">
+            <div class="grid-item-border">
+              <div
+                class="grid-item-top-content"
+                style="background-image: url('images/tile_rainy.jpg')"
+                id="rainy-sunday"
+                onClick="swapPlayerContent(this.id)"
+              ></div>
+              <div class="player-container">
+                <p class="track-title">Rainy Sunday</p>
+                <img class="icon-box fake-link-nav" src="images/download-icon-white.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="button-see-all button-outline">Browse all white noise</button>
+        <hr class="full-width-hr hr-hide-mob">
+        <div class="info-block no-top-marg-mob">
+          <div class="info-column info-column-2-3">
+            <div class="info-column-inner no-top-marg-mob">
+              <h2>Hush the World white noise tracks cost just $1<span style="font-size: smaller;"> (+tax)</span></h2>
+              <p>Purchasing from Bandcamp</span> allows you to download high quality FLAC and MP3 files + unlimited streaming via <span class="fake-link">bandcamp.com</span> or the Bandcamp app (<span class="fake-link">Android</span> or <span class="fake-link">iOS</span>). Tracks bought are yours forever.</p>
+              <p>It also helps support the creation of all-new white noise tracks.</p>
+            </div>
+          </div>
+          <div class="info-column info-column-1-3" ><img style="max-width:256px;" src="images/bandcamp-button-square-green-256.png"></div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="footer-left">
+          <p class="fake-link-nav">About</p>
+          <p class="fake-link-nav">Contact us</p>
+          <p class="fake-link-nav">Learn about sound anxiety</p>
+          <p class="fake-link-nav">Site map</p>
+        </div>
+        <div class="footer-right">
+          <div class="footer-social">
+            <img class="fake-link-nav" src="images/social-icons-facebook.png">
+            <img class="fake-link-nav" src="images/social-icons-twitter.png">
+            <img class="fake-link-nav" src="images/social-icons-instagram.png">
+            <img class="fake-link-nav" src="images/social-icons-linkedin.png">
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+      </div>
+    </div>
+    <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="/scripts/emulate-mobile.js"></script>
+  </body>
+</html>
