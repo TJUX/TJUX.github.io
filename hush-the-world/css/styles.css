@@ -12,7 +12,7 @@ html,
 body {
   overflow-x: hidden;
   width: 100%;
-  background-color: #edfcfc;
+  background-color: #ffffff;
 }
 
 .site-container {
@@ -542,7 +542,6 @@ img.icon {
 }
 .collapsible-box:hover {
   cursor: pointer;
-  background-color: #f7f7f7;
 }
 .moreinfo {
   font-weight: 600;
