@@ -21,13 +21,13 @@ body {
   background-image: url("/images/sidebar-main.png");
   background-size: contain;
   background-repeat: no-repeat;
-  padding: 4px;
-  margin-left: -8px;
+  padding: 0px;
   transition: padding 0.1s ease, margin-left 0.1s ease;
 }
 .global-nav-main-selected {
-  padding: 0px;
+  padding: 4px;
   margin-left: 0px;
+  margin-left: -8px;
 }
 
 .global-nav-main:hover {
@@ -217,4 +217,24 @@ body {
   -moz-transform: scale(1);
   -o-transform: scale(1);
   -webkit-transform: scale(1);
+}
+
+@media screen and (max-width: 450px) {
+  .global-nav-main {
+    width: 450px;
+    height: 45px;
+    padding: 0px;
+    margin-left: 14px;
+  }
+  .global-nav-main-selected {
+    padding: 4px;
+    margin-left: 0px;
+    margin-left: 5px;
+  }
+
+  .global-nav-main img {
+    display: block;
+    margin: 12px 8px;
+    height: 24px;
+  }
 }
