@@ -80,6 +80,9 @@ body {
   margin-top: 32px;
   margin-bottom: 0px;
 }
+a:-webkit-any-link {
+  text-decoration: none;
+}
 .mobile-header {
   display: none;
 }
