@@ -45,3 +45,7 @@ var emWidth = 375;
 function closeBlocker() {
   blocker.style.width = "0";
 }
+
+document.body.addEventListener('click', function (){
+  window.top.closeNav();
+}); 

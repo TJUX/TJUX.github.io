@@ -175,4 +175,25 @@ function pageGoTo(u) {
   window.location.href = page;
 
 }
+
+
+window.onclick = function(event) {
+  if ((!event.target.classList.contains('nav-identify')) ){
+    closeNav();
+  }
+}
+
+function closeNav() {
+  if (document.getElementById("id-nav-main-button").classList.contains("global-nav-main-selected")) {
+    document.getElementById("id-nav-main-button").classList.toggle("global-nav-main-selected");
+    document.getElementsByClassName("global-nav-top")[0].classList.toggle("global-nav-menu-open");
+    document.getElementsByClassName("global-nav-top")[1].classList.toggle("global-nav-menu-open");
+  }
+}
+
+function testIframeClick() {
+  alert("it works");
+}
+
+
 getParams();
