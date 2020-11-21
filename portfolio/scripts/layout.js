@@ -37,7 +37,7 @@ function closeLoadingScreen() {
 
 
 function closeLoadingSmall() {
-    document.getElementById("id-loading-small").style.width= null;
+    document.getElementById("id-loading-small").style.width = null;
 }
 function openLoadingSmall() {
     document.getElementById("id-loading-small").style.width= "100%";
@@ -61,6 +61,7 @@ function originalOrder() {
         "21270047",
         "21270088",
         "21270351",
+        "21285429",
         "21270630",
         "21270818",
         "21270820",
@@ -73,9 +74,12 @@ function originalOrder() {
         "68375932",
         "30686193",
         "30686194",
+        "21270031",
         "30686195",
         "41669065",
+        "21276934",
         "47360655",
+        "53887695",
         "84936230"
     ];
 }
@@ -237,7 +241,7 @@ function selectItem(p) {
                     }
                     
                 }
-                    p.scrollIntoView({behavior: "auto", block: "center"});
+                p.scrollIntoView({behavior: "auto", block: "center"});
             }
             else {
                 p.scrollIntoView({behavior: "smooth", block: "center"});
