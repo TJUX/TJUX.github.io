@@ -59,6 +59,7 @@ function originalOrder() {
     portfolioItems = [
         "21270809",
         "21270047",
+        "48493627",
         "21270088",
         "21270351",
         "21285429",
@@ -180,6 +181,9 @@ function loadBgImage(u, f) {
     if (u.id == "38502763") {
         fileExtension = ".gif";
     }
+    if (u.id == "48493627") {
+        fileExtension = ".svg";
+    }
     
     u.style.backgroundImage = "url('images/portfolio/"+u.id+preview+fileExtension+"')";
     
@@ -194,6 +198,9 @@ function scaleImage(u) {
         var fileExtension = ".jpg";
         if (u.id == "38502763") {
             fileExtension = ".gif";
+        }
+        if (u.id == "48493627") {
+            fileExtension = ".svg";
         }
         addImage(u, u.id+fileExtension);
     }
