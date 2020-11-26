@@ -271,6 +271,12 @@ function addX(div) {
         x.innerHTML = "x";
         x.addEventListener("click",clickX); 
         div.prepend(x);
+
+        x = document.createElement("DIV");
+        x.classList.add("share");
+        x.id = "id-share";
+        x.addEventListener("click",clickShare); 
+        div.prepend(x);
     }
 }
 
@@ -281,14 +287,50 @@ function clickX() {
     scaleAllImages();
     removeX();
     updateBrowserUrl(false);
+    deleteNotification();
+}
+
+var deleteNotify;
+function clickShare() {
+    var dummy = document.createElement('input'),
+    text = window.parent.location.href;
+
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+
+    deleteNotification();
+    clearTimeout(deleteNotify);
+
+    var notify = document.createElement("DIV");
+    notify.classList.add("link-copied");
+    notify.id = "id-link-copied";
+    notify.innerHTML = ("Link copied to clipboard!");
+    document.getElementsByClassName("portfolio-item display-toggle display-grid display-selected")[0].prepend(notify);
+
+    deleteNotify = window.setTimeout(deleteNotification, 2000);
+}
+
+function deleteNotification() {
+    var a = document.getElementsByClassName("link-copied");
+    for (i=0; i < a.length; i++) {
+        a[i].remove();
+    }
 }
 
 function removeX() {
-    a = document.getElementById("id-close");
+    var a = document.getElementById("id-close");
+    if (a) {
+        a.remove();
+    }
+    a = document.getElementById("id-share");
     if (a) {
         a.remove();
     }
 }
+
 
 
 function deselectAll() {
