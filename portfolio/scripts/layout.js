@@ -19,6 +19,7 @@ init();
 originalOrder();
 createPortfolioItems();
 loadAllBgImages();
+getParams();
 
 function init() {
     document.body.onload = closeLoadingScreen;
@@ -249,6 +250,7 @@ function selectItem(p) {
                     
                 }
                 p.scrollIntoView({behavior: "auto", block: "center"});
+                updateBrowserUrl(p.id);
             }
             else {
                 p.scrollIntoView({behavior: "smooth", block: "center"});
@@ -278,6 +280,7 @@ function clickX() {
     deselectAll();
     scaleAllImages();
     removeX();
+    updateBrowserUrl(false);
 }
 
 function removeX() {
@@ -296,3 +299,21 @@ function deselectAll() {
     loadAllBgImages();
     closeLoadingSmall();
 }
+
+function getParams() {
+    var queryString = window.parent.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams.has("item")) {
+        var paramItem = urlParams.get("item");
+        selectItem(document.getElementById(paramItem));
+    }
+  }
+
+  function updateBrowserUrl(f) {
+    if (f === false) {
+        window.parent.history.replaceState({}, "TJUX","?item="+0);
+    }
+    else {
+        window.parent.history.replaceState({}, "TJUX","?item="+f);
+    }
+  }
