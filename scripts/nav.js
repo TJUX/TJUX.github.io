@@ -19,7 +19,7 @@ function getParams() {
   if (urlParams.get("navopen")) {
     clickNavButton();
   }
-  if (urlParams.get("hidenav")) {
+  if ((urlParams.get("hidenav")=="true") || (!urlParams.has("hidenav")))  {
     hideNav();
   }
 }
@@ -162,6 +162,7 @@ function pageGoTo(u) {
     var navOpen = ("navopen=true");
     parList.push(navOpen);
   }
+  parList.push("hidenav=false");
   if (parList.length != 0) {
     var pre = "?";
     for (i=0; i < parList.length; i++) {
@@ -191,9 +192,6 @@ function closeNav() {
   }
 }
 
-function testIframeClick() {
-  alert("it works");
-}
 
 
 getParams();
