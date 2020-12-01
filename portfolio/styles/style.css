@@ -422,6 +422,17 @@ a:-webkit-any-link {
   .email p {
     visibility: hidden;
   }
+  .close {
+    margin-right: 15px;
+    text-shadow: 0px 0px 4px #000000;
+    font-size: 50px;
+  }
+  .share {
+    width: 33px;
+    height: 33px;
+    top: 19px;
+    right: 50px;
+  }
 }
 
 .portfolio-item.display-selected {
