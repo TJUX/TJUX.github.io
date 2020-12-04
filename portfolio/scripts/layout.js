@@ -14,6 +14,9 @@ myEvent.addEventListener("click", toggleFullWidth);
 myEvent = document.getElementById("id-back-to-top");
 myEvent.addEventListener("click", scrollToTop);
 
+myEvent = document.getElementById("nav-share-icon");
+myEvent.addEventListener("click", toggleShare);
+
 
 init();
 originalOrder();
@@ -355,19 +358,33 @@ function deselectAll() {
 }
 
 function getParams() {
-    var queryString = window.parent.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    if (urlParams.has("item")) {
+var queryString = window.parent.location.search;
+const urlParams = new URLSearchParams(queryString);
+if (urlParams.has("item")) {
+    if (urlParams.get("item") != "0") {
         var paramItem = urlParams.get("item");
         selectItem(document.getElementById(paramItem));
     }
-  }
+    }
+}
 
-  function updateBrowserUrl(f) {
+function updateBrowserUrl(f) {
     if (f === false) {
         window.parent.history.replaceState({}, "TJUX","?item="+0);
     }
     else {
         window.parent.history.replaceState({}, "TJUX","?item="+f);
+    }
+}
+
+function toggleShare() {
+    document.getElementById("nav-share-container").classList.toggle("hidden");
+    document.getElementById("nav-share-icon").classList.toggle("nav-share-icon-selected");
+}
+//close share icons if clicked outside
+window.onclick = function(event) {
+    if (event.target.id != 'nav-share-icon' && !event.target.id != 'nav-share-container') {
+        document.getElementById("nav-share-container").classList.add("hidden");
+        document.getElementById("nav-share-icon").classList.remove("nav-share-icon-selected");
     }
   }

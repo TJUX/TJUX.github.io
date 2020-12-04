@@ -16,6 +16,7 @@ body {
 }
 .frame-nav {
   width: 20%;
+  height: 100vh;
   float: left;
 }
 .nav {
@@ -30,7 +31,6 @@ body {
   border-right-width: 1px;
   height: 100vh;
   width: 20%;
-  margin: auto;
   position: fixed;
 }
 .logo {
@@ -50,7 +50,7 @@ body {
   text-align: center;
   color: #eeeeee;
   margin-bottom: 80px;
-  font-size: 90%;
+  font-size: 14px;
 }
 .email {
   font-weight: 500;
@@ -63,7 +63,7 @@ body {
   margin-right: 32.5%;
   font-size: 14px;
   background-image: url("../images//ui/email.png");
-  background-position: top center;
+  background-position: bottom center;
   background-size: 30px;
   background-repeat: no-repeat;
 }
@@ -76,10 +76,47 @@ body {
   margin-top: 2px;
 }
 
-.email p {
-  margin-top: 32px;
-  margin-bottom: 0px;
+#nav-share-icon {
+  display: none;
 }
+
+.email p {
+  margin-bottom: 32px;
+  margin-top: 0px;
+}
+#nav-share-container {
+  width: 100%;
+  display: block;
+  height: max-content;
+  position: absolute;
+  bottom: 12%;
+}
+#nav-share-container.hidden {
+  display: block;
+}
+#nav-share-container p {
+  margin: 0px;
+}
+.nav-share {
+  position: absolute;
+  text-align: center;
+  width: 25%;
+  margin-left: 37.5%;
+  margin-right: 37.5%;
+  height: 50px;
+  display: table;
+}
+
+.nav-share-button {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  display: table-cell;
+  background-position: center;
+  background-size: 16px;
+  background-repeat: no-repeat;
+}
+
 a:-webkit-any-link {
   text-decoration: none;
 }
@@ -207,6 +244,7 @@ a:-webkit-any-link {
   padding: 3px;
   font-size: 16px;
   font-weight: 600;
+  text-align: center;
   margin: auto;
   border-color: #555555;
   border-width: 3px;
@@ -214,6 +252,7 @@ a:-webkit-any-link {
   color: #555555;
   border-radius: 10px;
   width: max-content;
+  min-width: 120px;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -281,6 +320,9 @@ a:-webkit-any-link {
   animation: notify-fade 2s linear 0.2s;
   text-shadow: 0px 0px 6px #000000;
 }
+.hidden {
+  display: none;
+}
 @keyframes notify-fade {
   0%,
   25% {
@@ -291,15 +333,32 @@ a:-webkit-any-link {
   }
 }
 
-@media (max-width: 1100px) {
+@media screen and (max-width: 1100px) {
   .portfolio-item.display-grid {
     flex: 32%;
     max-width: 32%;
     margin: 0.5% 0.66%;
   }
+  .email {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .nav-share {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  .nav-share-button {
+    height: 20px;
+    width: 20px;
+    background-position: center;
+    background-size: 20px;
+    background-repeat: no-repeat;
+  }
 }
 
-@media (max-width: 800px) {
+@media screen and (max-width: 800px) {
   .portfolio-item.display-grid {
     flex: 49%;
     max-width: 49%;
@@ -307,7 +366,7 @@ a:-webkit-any-link {
   }
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .portfolio-item.display-grid {
     margin-top: 8px;
     flex: 32%;
@@ -386,6 +445,46 @@ a:-webkit-any-link {
     top: 17px;
     margin: 0;
   }
+
+  .nav-share {
+    width: 100%;
+    height: 30px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #2d2d2d;
+    background-image: url(../images/ui/black-suede.png);
+    background-repeat: repeat;
+    background-size: 100px;
+    top: 50px;
+  }
+  #nav-share-container {
+    width: 100px;
+    right: 20px;
+    top: 0px;
+  }
+  #nav-share-container.hidden {
+    display: none;
+  }
+
+  #nav-share-icon {
+    display: block;
+    height: 30px;
+    width: 35px;
+    position: absolute;
+    right: 60px;
+    top: 12px;
+    margin: 0;
+    background-image: url("../images//ui/share-nav.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: 20px;
+    transition: background-size 0.1s ease-in-out;
+  }
+  #nav-share-icon.nav-share-icon-selected {
+    background-size: 25px;
+  }
+
   .close {
     margin-right: 15px;
     text-shadow: 0px 0px 4px #000000;
@@ -399,7 +498,7 @@ a:-webkit-any-link {
   }
 }
 
-@media (max-width: 450px) {
+@media screen and (max-width: 450px) {
   .portfolio-item.display-grid {
     flex: 49%;
     max-width: 49%;
@@ -414,7 +513,7 @@ a:-webkit-any-link {
   }
 }
 
-@media (max-width: 500px) {
+@media screen and (max-width: 500px) {
   .thanks-inner {
     width: 300px;
   }
@@ -446,4 +545,27 @@ a:-webkit-any-link {
   max-width: 99%;
   margin: 10px 0.5%;
   height: auto;
+}
+
+@media screen and (max-height: 380px) and (min-width: 601px) {
+  .nav .sub-header {
+    display: none;
+  }
+  .email {
+    bottom: 40px;
+    height: 30px;
+  }
+  .nav p {
+    display: none;
+  }
+  #nav-share-container {
+    bottom: 20px;
+    height: 20px;
+  }
+}
+@media screen and (max-height: 200px) and (min-width: 602px) {
+  .nav-share,
+  .email {
+    display: none;
+  }
 }
