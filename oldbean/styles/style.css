@@ -93,6 +93,7 @@ body {
   overflow: hidden;
   margin-left: 50%;
   transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
   max-width: 380px;
 }
 #nav-share-container.hidden {
@@ -455,21 +456,25 @@ a:-webkit-any-link {
 
   #nav-share {
     width: 100%;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 0px;
+    margin-right: 0px;
     background-color: #2d2d2d;
     background-image: url(../images/ui/black-suede.png);
     background-repeat: repeat;
     background-size: 100px;
     top: 0px;
+    right: 0px;
     margin: 0px;
   }
   #nav-share-container {
+    position: absolute;
     height: 30px;
     width: 130px;
     right: 0px;
     top: 50px;
     max-height: 30px;
+    transform: none;
+    -webkit-transform: none;
   }
   #nav-share-container.hidden {
     max-height: 0px;
