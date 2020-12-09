@@ -57,7 +57,7 @@ body {
   color: #eeeeee;
   text-align: center;
   position: absolute;
-  bottom: 20%;
+  bottom: 140px;
   width: 35%;
   margin-left: 32.5%;
   margin-right: 32.5%;
@@ -87,23 +87,29 @@ body {
 #nav-share-container {
   width: 100%;
   display: block;
-  height: max-content;
+  height: 60px;
   position: absolute;
-  bottom: 12%;
+  bottom: 60px;
+  overflow: hidden;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  max-width: 380px;
 }
 #nav-share-container.hidden {
   display: block;
 }
 #nav-share-container p {
   margin: 0px;
+  height: 50px;
 }
-.nav-share {
+#nav-share {
   position: absolute;
+  top: 12px;
   text-align: center;
   width: 25%;
   margin-left: 37.5%;
   margin-right: 37.5%;
-  height: 50px;
+  height: 100%;
   display: table;
 }
 
@@ -113,7 +119,7 @@ body {
   position: relative;
   display: table-cell;
   background-position: center;
-  background-size: 16px;
+  background-size: 80%;
   background-repeat: no-repeat;
 }
 
@@ -344,7 +350,7 @@ a:-webkit-any-link {
     margin-left: 10%;
     margin-right: 10%;
   }
-  .nav-share {
+  #nav-share {
     width: 50%;
     margin-left: 25%;
     margin-right: 25%;
@@ -353,7 +359,7 @@ a:-webkit-any-link {
     height: 20px;
     width: 20px;
     background-position: center;
-    background-size: 20px;
+    background-size: 60%;
     background-repeat: no-repeat;
   }
 }
@@ -395,9 +401,10 @@ a:-webkit-any-link {
     z-index: 100;
   }
   .nav img {
-    width: 45px;
-    height: 36px;
-    margin: 8px;
+    width: 36px;
+    height: 38px;
+    margin: 6px;
+    margin-left: 14px;
   }
   .nav p {
     display: none;
@@ -446,24 +453,29 @@ a:-webkit-any-link {
     margin: 0;
   }
 
-  .nav-share {
+  #nav-share {
     width: 100%;
-    height: 30px;
     margin-left: 20%;
     margin-right: 20%;
     background-color: #2d2d2d;
     background-image: url(../images/ui/black-suede.png);
     background-repeat: repeat;
     background-size: 100px;
-    top: 50px;
+    top: 0px;
+    margin: 0px;
   }
   #nav-share-container {
-    width: 100px;
-    right: 20px;
-    top: 0px;
+    height: 30px;
+    width: 130px;
+    right: 0px;
+    top: 50px;
+    max-height: 30px;
   }
   #nav-share-container.hidden {
-    display: none;
+    max-height: 0px;
+  }
+  .nav-share-button {
+    background-size: 50%;
   }
 
   #nav-share-icon {
@@ -480,6 +492,8 @@ a:-webkit-any-link {
     background-size: contain;
     background-size: 20px;
     transition: background-size 0.1s ease-in-out;
+    -moz-transition: background-size 0.1s ease-in;
+    -web-kit-transition: background-size 0.1s ease-in;
   }
   #nav-share-icon.nav-share-icon-selected {
     background-size: 25px;
@@ -547,24 +561,24 @@ a:-webkit-any-link {
   height: auto;
 }
 
-@media screen and (max-height: 380px) and (min-width: 601px) {
+@media screen and (max-height: 450px) and (min-width: 601px) {
   .nav .sub-header {
     display: none;
   }
   .email {
-    bottom: 40px;
+    bottom: 50px;
     height: 30px;
   }
   .nav p {
     display: none;
   }
   #nav-share-container {
-    bottom: 20px;
-    height: 20px;
+    bottom: 10px;
+    height: 60px;
   }
 }
 @media screen and (max-height: 200px) and (min-width: 602px) {
-  .nav-share,
+  #nav-share,
   .email {
     display: none;
   }
