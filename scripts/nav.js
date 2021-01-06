@@ -1,8 +1,8 @@
 var navPosTarget;
-var mobileMinWidth = 420;
+var mobileMinWidth = 600;
 var frame = document.getElementById("id-frame").contentWindow;
-document.getElementById("id-nav-main-button").addEventListener("click",clickNavButton);
 document.getElementById("id-screen-toggle").addEventListener("click",toggleMobile);
+document.getElementById("global-nav-menu-button").addEventListener("click",toggleGlobalMenu);
 var zoomButtons = document.getElementsByClassName("zoom-button");
 zoomButtons[0].addEventListener("click",function(){zoomInOut(this);});
 zoomButtons[1].addEventListener("click",function(){zoomInOut(this);});
@@ -19,13 +19,18 @@ function getParams() {
   if (urlParams.get("navopen")) {
     clickNavButton();
   }
-  if ((urlParams.get("hidenav")=="true") || (!urlParams.has("hidenav")))  {
-    hideNav();
+
+  var pathArray = window.location.pathname.split('/');
+  if (pathArray[1] != "home" && pathArray[1] != "about") {
+    if ((urlParams.get("hidenav")=="true") || (!urlParams.has("hidenav"))) {
+      hideNav();
+    }
   }
 }
 
 function hideNav() {
-  document.getElementById("id-global-nav").style.visibility = "hidden";
+  document.getElementById("id-frame").style.padding = "0px";
+  document.getElementById("id-global-nav").style.display = "none";
 }
 
 function getMobileEnabled() {
@@ -38,48 +43,75 @@ function getMobileEnabled() {
   }
 }
 
-function screenButtonsAjd() {
-
-  if (window.innerWidth <= mobileMinWidth)  {
-    document.getElementById("id-nav-desktop").style.backgroundImage = "url('/images/sidebar-desktop-noselect.png')";
-    document.getElementById("id-nav-mobile").style.backgroundImage = "url('/images/sidebar-mobile-selected.png')";
+function windowWiderThanMobileMin() {
+  var isBigEnough;
+  if (window.innerWidth <= mobileMinWidth) {
+    isBigEnough = false;
   }
   else {
+    isBigEnough = true;
+  }
+  return isBigEnough;
+}
+
+function screenButtonsAjd() {
+
+  if (!windowWiderThanMobileMin())  {
+  }
+  else {
+    var ele;
     if (getMobileEnabled()) {
-      document.getElementById("id-nav-mobile").style.backgroundImage = "url('/images/sidebar-mobile-selected.png')";
-      document.getElementById("id-nav-desktop").style.backgroundImage = "url('/images/sidebar-desktop.png')";
+      ele = document.getElementById("id-nav-mobile");
+      ele.style.backgroundImage = "url('/images/sidebar-mobile.png')";
+      ele.classList.add("selected");
+      ele = document.getElementById("id-nav-desktop");
+      ele.style.backgroundImage = "url('/images/sidebar-desktop-noselect.png')";
+      ele.classList.remove("selected");
     }
     else {
-      document.getElementById("id-nav-desktop").style.backgroundImage = "url('/images/sidebar-desktop-selected.png')";
-      document.getElementById("id-nav-mobile").style.backgroundImage = "url('/images/sidebar-mobile.png')";
+      ele = document.getElementById("id-nav-desktop");
+      ele.style.backgroundImage = "url('/images/sidebar-desktop.png')";
+      ele.classList .add("selected");
+      ele = document.getElementById("id-nav-mobile");
+      ele.style.backgroundImage = "url('/images/sidebar-mobile-noselect.png')";
+      ele.classList.remove("selected");
     }
   }
 }
 
-function clickNavButton() {
-  document.getElementById("id-nav-main-button").classList.toggle("global-nav-main-selected");
-  document.getElementsByClassName("global-nav-top")[0].classList.toggle("global-nav-menu-open");
-  document.getElementsByClassName("global-nav-top")[1].classList.toggle("global-nav-menu-open");
-}
+
 
 function toggleMobile() {
-  if ((window.innerWidth > mobileMinWidth) || ((window.innerWidth <= mobileMinWidth)  && getMobileEnabled()))  {
+  if ((windowWiderThanMobileMin()) || ((!windowWiderThanMobileMin())  && getMobileEnabled()))  {
     var ele = document.getElementById("id-content");
     ele.classList.toggle("mobile-emulation");
-    ele.classList.toggle("mobile-zoom-"+zoomLevel);
+    ele.classList.remove("mobile-zoom-5");
+    ele.classList.remove("mobile-zoom-6");
+    ele.classList.remove("mobile-zoom-7");
+    ele.classList.remove("mobile-zoom-8");
+    ele.classList.remove("mobile-zoom-9");
+    ele.classList.remove("mobile-zoom-10");
     if (getMobileEnabled()) {
+      setZoomLevelToScreenSize();
+      ele.classList.add("mobile-zoom-"+zoomLevel);
       document.getElementById("id-zoom").style.display =  null;
       document.getElementById("id-page-container").style.overflowY =  "scroll";
     }
     else {
       document.getElementById("id-zoom").style.display = "none";
-      //frame.location.reload();
-
       document.getElementById("id-page-container").style.overflowY =  null;
       
     }
     navPos();
     screenButtonsAjd();
+  }
+}
+function setZoomLevelToScreenSize() {
+  if (window.innerHeight < 600) {
+    zoomLevel = 6;
+  }
+  if (window.innerHeight < 500) {
+    zoomLevel = 5;
   }
 }
 function zoomInOut(u,r) {
@@ -112,56 +144,33 @@ window.addEventListener("resize", navPos);
 
 function navPos() {
 
-  if (document.getElementById("id-content").classList.contains("mobile-emulation")) { 
-    navPosTarget = document.getElementById("id-page-container");
-  }
-  else {
-    navPosTarget = frame.document.getElementById("width-calc")
-  }
-  if (navPosTarget) {
-    winWidth = navPosTarget.clientWidth;
-    document.getElementById("id-global-nav").style.left = winWidth+"px";
+  if (!windowWiderThanMobileMin()) {
+    toggleMobile();
+
+    if (document.getElementById("id-global-nav").classList.contains("global-nav-menu-open")) {
+      toggleGlobalMenu();
+    }
   }
   screenButtonsAjd();
-  if (window.innerWidth < mobileMinWidth) {
-    toggleMobile();
-  }
+  hideNavOnScroll("up");
+
 
 }
 
-document.getElementById("id-global-nav-next").addEventListener("click",function(){pageGoTo(this.id)});
-document.getElementById("id-global-nav-prev").addEventListener("click",function(){pageGoTo(this.id)});
+
 
 function pageGoTo(u) {
   var loc = window.location.pathname;
   var dir = loc.substring(1, loc.lastIndexOf('/'));
   
-  if (u == "id-global-nav-next") {
-    var page;
-    switch(dir) {
-      case("guided-breathing") : page = "/portfolio/"; break;
-      case("portfolio") : page = "/hush-the-world/"; break;
-      case("hush-the-world") : page = "/guided-breathing/"; break;
-    }
-  }
-  else {
-    switch(dir) {
-      case("guided-breathing") : page = "/hush-the-world/"; break;
-      case("portfolio") : page = "/guided-breathing/"; break;
-      case("hush-the-world") : page = "/portfolio/"; break;
-    }
-  }
-  
+  var page = u;
 
   const parList = [];
   if (getMobileEnabled()) {
     var mob = ("mobile"+"="+zoomLevel);
     parList.push(mob);
   }
-  if (document.getElementById("id-nav-main-button").classList.contains("global-nav-main-selected")) {
-    var navOpen = ("navopen=true");
-    parList.push(navOpen);
-  }
+  
   parList.push("hidenav=false");
   if (parList.length != 0) {
     var pre = "?";
@@ -172,25 +181,40 @@ function pageGoTo(u) {
       }
     }
   }
-
   window.location.href = page;
 
 }
 
-
-window.onclick = function(event) {
-  if ((!event.target.classList.contains('nav-identify')) ){
-    closeNav();
+function toggleGlobalMenu() {
+  var nav = document.getElementById("id-global-nav");
+  var navButton = document.getElementById("global-nav-menu-button");
+  var navLogo = document.getElementById("global-nav-logo");
+  if (!nav.classList.contains("global-nav-menu-open")) {
+    nav.classList.add("global-nav-menu-open");
+    navLogo.classList.add("global-nav-menu-open");
+    navButton.style.backgroundImage = "url('/images/menu-close.png')";
+  }
+  else {
+    nav.classList.remove("global-nav-menu-open");
+    navLogo.classList.remove("global-nav-menu-open");
+    navButton.style.backgroundImage = null;
   }
 }
 
-function closeNav() {
-  if (document.getElementById("id-nav-main-button").classList.contains("global-nav-main-selected")) {
-    document.getElementById("id-nav-main-button").classList.toggle("global-nav-main-selected");
-    document.getElementsByClassName("global-nav-top")[0].classList.toggle("global-nav-menu-open");
-    document.getElementsByClassName("global-nav-top")[1].classList.toggle("global-nav-menu-open");
+
+function hideNavOnScroll(u) {
+  if (u == "down" && !windowWiderThanMobileMin()) {
+    document.getElementById("id-global-nav").classList.add("global-nav-menu-scrollhidden");
+    document.getElementById("id-frame").classList.add("global-nav-menu-scrollhidden");
+  }
+  else {
+    document.getElementById("id-global-nav").classList.remove("global-nav-menu-scrollhidden");
+    document.getElementById("id-frame").classList.remove("global-nav-menu-scrollhidden");
   }
 }
+
+
+
 
 
 

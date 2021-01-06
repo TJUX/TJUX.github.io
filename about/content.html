@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta
+            charset="utf-8"
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1"
+        />
+        <title>My test page</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+        <link href="/home/styles/style.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/css/mobile-scrollbar.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="width-calc" style="width: 100%; height: 10px; position: absolute; left:0; top: 0;"></div>
+        <div id="id-blocker" class="blocker"></div>
+        <div class="main">
+            <div class="main-content">
+                <div class="box box-intro" id="reveal-info-box">
+                    <h2>Information hidden for Equal Opportunities employers</h2>
+                    <button class="button-portfolio" id="reveal-button" onclick="revealInformation()">REVEAL</button>
+                </div>
+                <div class="box-container" id="info" style="min-height: unset; display: none; margin-bottom: 0px;">
+                    <div class="box" style="padding-top: 0px;">
+                        <h2>About Me</h2>
+                        <h3>Timothy Jones, Sheffield, United Kingdom</h3>
+                        <p>Intuitive UX design doesn't have to be difficult or complicated. Sometimes the most efficient user journey is a straight line, and it's finding those straight lines that interests me the most.</p>
+                        <p>Welcome to my web design and UX playground. This is where I like to experiment on various hypothetical web apps and sites to further my knowledge understanding of everything web. There's always something new to learn and my philosophy that no knowledge is ever out of reach.</p>
+                        <p>I studied at Sheffield Hallam University and graduated with a BA in Contemporary Media Art in 2010. Since 2013 I've worked in web content management, web and graphic design, and user experience management for a variety of consumer and enterprise technology companies.</p>
+                        <a class="button-portfolio" id="oldbean" href="mailto:tim@tjux.co.uk">EMAIL ME</a>
+                    </div>
+                    <div class="box bg-image image-no-scroll" style="background-image: url('images/me.jpg');"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="/home/scripts/script.js"></script>
+    <script type="text/javascript" src="/scripts/emulate-mobile.js"></script>
+</html>

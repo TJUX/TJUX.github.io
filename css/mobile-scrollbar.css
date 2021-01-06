@@ -20,7 +20,7 @@
   }
 
   body {
-    cursor: grab;
+    /*cursor: grab;*/
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-touch-callout: none;

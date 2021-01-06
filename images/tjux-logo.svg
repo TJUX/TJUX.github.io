@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1200px" height="1200px" viewBox="0 0 1200 1200" enable-background="new 0 0 1200 1200" xml:space="preserve">
+<style>
+	#logo-1 {
+		transform: translateY(0px);
+		-moz-transform: translateY(0px);
+  		-webkit-transform: translateY(0px);
+		 curser: pointer;
+		 animation: move-up 5s linear infinite;
+		 animation-delay: 0.9s;
+	}
+	#logo-2 {
+		transform: translateY(-50px) translateX(50px);
+		-moz-transform: translateY(-50px) translateX(50px);
+  		-webkit-transform: translateY(-50px) translateX(50px);
+		 animation: move-dl 5s infinite;
+		 animation-delay: 0.3s;
+	}
+	#logo-3 {
+		transform: translateY(-50px) translateX(-50px);
+		-moz-transform: translateY(-50px) translateX(-50px);
+  		-webkit-transform: translateY(-50px) translateX(-50px);
+		animation: move-dr 5s infinite;
+		animation-delay: 0.6s;
+	}
+	@keyframes move-up {
+		66%, 65%  {
+			transform: translateY(50px);
+			-moz-transform: translateY(50px);
+			-webkit-transform: translateY(50px);
+		}
+		0%, 35%, 100% {
+			transform: translateY(0px);
+			-moz-transform: translateY(0px);
+			-webkit-transform: translateY(0px);
+		}
+	}
+	@keyframes move-dl {
+		66%, 65%  {
+			transform: translateX(50px) translateY(-50px);
+			-moz-transform: translateX(50px) translateY(-50px);
+			-webkit-transform: translateX(50px) translateY(-50px);
+		}
+		0%, 35%, 100% {
+			transform: translateX(0px) translateY(0px);
+			-moz-transform: translateX(0px) translateY(0px);
+			-webkit-transform: translateX(0px) translateY(0px);
+		}
+	}
+	@keyframes move-dr {
+		66%, 65%  {
+			transform: translateX(-50px) translateY(-50px);
+			-moz-transform: translateX(-50px) translateY(-50px);
+			-webkit-transform: translateX(-50px) translateY(-50px);
+		}
+		0%, 35%, 100% {
+			transform: translateX(0px) translateY(0px);
+			-moz-transform: translateX(0px) translateY(0px);
+			-webkit-transform: translateX(0px) translateY(0px);
+		}
+	}
+</style>
+<path id="logo-1" fill="#234049" d="M602.875,12.903c-155.539,0-296.964,60.377-402.107,158.952h804.215
+	C899.839,73.28,758.414,12.903,602.875,12.903z"/>
+<path id="logo-2" fill="#234049" d="M15,600.445c0,204.111,104.146,383.904,262.219,489.219V371.343H61.373
+	C31.516,441.744,15,519.167,15,600.445z"/>
+<path id="logo-3" fill="#234049" d="M494,371v806.923c35,6.603,71.672,10.064,108.869,10.064c99.871,0,193.924-24.898,276.29-68.811
+	c-59.563-1.218-113.032-14.06-160.382-38.527c-49.848-25.747-88.891-63.528-116.764-113.362
+	C574.139,917.475,560,855.411,560,781.097V744h151v56.096c0,55.73,16.56,99.429,49.501,131.094s75.628,47.498,128.011,47.498
+	c51.51,0,93.945-15.833,126.887-47.498c32.942-31.665,49.602-75.363,49.602-131.094V371H494z M770,578.572
+	c0,21.154-3.9,39.697-11.863,55.616c-7.967,15.925-19.7,28.267-35.282,37.021c-15.589,8.753-34.85,13.136-57.83,13.136
+	c-22.984,0-42.258-4.383-57.84-13.136c-15.588-8.754-27.208-21.096-35.282-37.021C563.824,618.27,560,599.727,560,578.572V429h41
+	v152.984c0,12.742,2.271,24.002,7.278,33.779c5.002,9.783,12.171,17.348,21.728,22.689c9.557,5.348,21.215,8.018,35.097,8.018
+	c13.877,0,25.511-2.611,34.956-7.847c9.438-5.229,16.545-12.736,21.553-22.52c5.001-9.777,7.389-21.154,7.389-34.12V429h41V578.572z
+	 M985.869,678l-68.261-99h-6.483l-65.872,99h-44.028l88.197-130.213L809.075,429h45.733l59.388,90h6.483l60.07-90h44.028
+	l-82.633,120.696l89.8,128.304H985.869z"/>
+</svg>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta
+            charset="utf-8"
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1"
+        />
+        <title>My test page</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+        <link href="styles/style.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/css/mobile-scrollbar.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="width-calc" style="width: 100%; height: 10px; position: absolute; left:0; top: 0;"></div>
+        <div id="id-blocker" class="blocker"></div>
+        <div class="main">
+            <div class="main-content">
+                <div class="box-container box-intro">
+                    <div class="box box-intro">
+                        <p></p>
+                        <h1>Portfolio</h1>
+                        <p>Scroll down</p>
+                    </div>
+                </div>
+                <div class="box-container">
+                    <div class="box">
+                        <h2>Old Bean</h2>
+                        <h3>Graphic design portfolio</h3>
+                        <p>An example of how to simply organise a portfolio - my graphic design portfolio to be exact!</p>
+                        <p><b>Challenge:</b> Organising a combination of image sizes in varying file formats including animated SVGs and keeping it contained within a single page.</p>
+                        <p><b>Solution:</b> A brid-based layout with persistent buttons to toggle to a feed-style layout. In grid mode, selecting an item re-orders the content so that the selected item is displayed full-size at the top of the page with the remaining items listed below in their original order.</p>
+                        <button class="button-portfolio" id="oldbean" onclick="portfolioLinkGoTo(id)">TAKE A LOOK</button>
+                    </div>
+                    <div class="box bg-image" style="background-image: url('images/old-bean-portfolio.jpg');"></div>
+                </div>
+                <div class="box-container">
+                    <div class="box">
+                        <h2>Guided Breathing</h2>
+                        <h3>One-click, easy access app</h3>
+                        <p>A web app designed for instant-access to guided breathing for relaxation.</p>
+                        <p><b>Challenge:</b> Keeping easy and immediate access to the main functions of the app while also offering options for colour customisation and exercise length.</p>
+                        <p><b>Solution:</b> A large central element which both operates as the initiation button and the actual guidance instructor. Customisation option are hidden during the main operation of the app which can be cancelled at any time. This allows the user distraction-free focus during the guided breathing session.</p>
+                        <button class="button-portfolio" id="guided-breathing" onclick="portfolioLinkGoTo(id)">TRY IT OUT</button>
+                    </div>
+                    <div class="box bg-image" style="background-image: url('images/guided-breathing.jpg');"></div>
+                </div>
+                <div class="box-container">
+                    <div class="box">
+                        <h2>Hush the World</h2>
+                        <h3>White noise information, streaming and purchase</h3>
+                        <p>An example homepage for a Wordpress-style site.</p>
+                        <p><b>Challenge:</b> Offering information on white noise while offering the ability to stream directly and purchase tracks without the use of a hosted e-commerce platform.</p>
+                        <p><b>Solution:</b> Utilise the sharing features of Bandcamp within a persistent sound player, but retaining the style of the site by sizing the iframe to only show the play button. Links are provided to purchase tracks directly from Bandcamp.</p>
+                        <button class="button-portfolio" id="hush-the-world" onclick="portfolioLinkGoTo(id)">TAKE A LOOK</button>
+                    </div>
+                    <div class="box bg-image" style="background-image: url('images/hush-the-world.jpg');"></div>
+                </div>
+
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="scripts/script.js"></script>
+    <script type="text/javascript" src="/scripts/emulate-mobile.js"></script>
+</html>
