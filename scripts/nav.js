@@ -21,7 +21,8 @@ function getParams() {
   }
 
   var pathArray = window.location.pathname.split('/');
-  if (pathArray[1] != "home" && pathArray[1] != "about") {
+  //alert(pathArray[0]);
+  if (pathArray[1] != "home" && pathArray[1] != "about" && pathArray[1] != "") {
     if ((urlParams.get("hidenav")=="true") || (!urlParams.has("hidenav"))) {
       hideNav();
     }

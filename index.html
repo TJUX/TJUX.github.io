@@ -1,8 +1,58 @@
 <!DOCTYPE html>
-<html>
-<meta http-equiv="refresh" content="0; URL=/portfolio/" />
-<body>
-<h1>Redirecting..</h1>
-<a href="test.html"></a>
-</body>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>TJUX</title>
+    <meta name="TJUX" content="Portfolio of UX Design" />
+    <meta author="" content="Tim Jones" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    />
+
+    <link rel="stylesheet" href="/css/styles.css?v=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div id="id-page-container" class="page-container">
+      <div id="id-global-nav" class="global-nav-container">
+        <div id="global-nav-logo">
+          <img src="/images/tjux-logo.svg">
+        </div>
+        <div id="global-nav-options">
+          <a id="nav-portfolio" href="/"><b>Portfolio</b></a>
+          <a id="nav-about" href="/about">About</a>
+          <a id="nav-contact" href="mailto:info@tjux.co.uk">Contact</a>
+        </div>
+        <div id="global-nav-menu-button"></div>
+        <div id="id-screen-toggle" class="global-nav-screen-options">
+          <div class="global-nav-screen-options-button" id="id-nav-mobile" style="background-image: url('/images/sidebar-mobile-noselect.png');"></div>
+          <div class="global-nav-screen-options-button selected" id="id-nav-desktop" style="background-image: url('/images/sidebar-desktop.png');"></div>
+        </div>
+
+      </div>
+      <div id="id-zoom" class="zoom" style="display: none;">
+        <div class="zoom-button zoom-plus"></div>
+        <div class="zoom-button zoom-minus"></div>
+      </div>
+      <div id="id-content" class="content">
+        <div class="line"></div>
+        <iframe
+          id="id-frame"
+          class="content content-inner"
+          frameborder="0"
+          src="/home/content.html"
+          onload="navPos();"
+        ></iframe>
+      </div>
+    </div>
+
+    <script src="/scripts/nav.js">
+    </script>
+
+  </body>
 </html>
